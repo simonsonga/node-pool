@@ -134,11 +134,11 @@ export class DefaultEvictor<T> implements IEvictor<T> {
 }
 
 export interface Factory<T> {
-  create(): Promise<T>;
+  create(): T | PromiseLike<T>;
 
-  destroy(client: T): Promise<void>;
+  destroy(client: T): void | PromiseLike<void>;
 
-  validate?(client: T): Promise<boolean>;
+  validate?(client: T): boolean | PromiseLike<boolean>;
 }
 
 export interface Options {
@@ -146,6 +146,7 @@ export interface Options {
   min?: number;
   maxWaitingClients?: number;
   testOnBorrow?: boolean;
+  testOnReturn?: boolean;
   acquireTimeoutMillis?: number;
   destroyTimeoutMillis?: number;
   fifo?: boolean;
@@ -155,6 +156,7 @@ export interface Options {
   numTestsPerEvictionRun?: number;
   softIdleTimeoutMillis?: number;
   idleTimeoutMillis?: number;
+  Promise?: PromiseConstructorLike;
 }
 
 export class Pool<T> extends EventEmitter {
