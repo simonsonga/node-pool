@@ -1,13 +1,14 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "module": "commonjs",
-    "lib": ["es6", "dom"],
+    "target": "ES2015",
+    "module": "ESNext",
+    "lib": ["es6", "dom", "es2015"],
     "outDir": "dist/",
     "allowJs": true,
     "checkJs": true,
     "declaration": true,
-    "noEmit": true,
-    "strict": false
+    "noEmit": false,
+    "strict": true,
+    "moduleResolution": "node"
   }
 }

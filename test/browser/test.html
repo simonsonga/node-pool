@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Generic Pool Browser Tests</title>
+  <meta charset="utf-8">
+</head>
+<body>
+  <h1>Generic Pool Browser Tests</h1>
+  <p>Open console to see results.</p>
+  <!--
+    IMPORTANT: The path to index.js (the compiled output of your library)
+    will depend on your `outDir` in tsconfig.json and where you place this HTML file.
+    Assuming tsconfig.json has "outDir": "./dist" and this HTML is in "test/browser/"
+    then "../../dist/index.js" should be correct.
+  -->
+  <script type="module">
+    // This script block makes the library's exports available globally if tests.js is not a module.
+    // If tests.js is also a module, it can use its own import statements.
+    import { createPool, Pool, Deque, PriorityQueue, DefaultEvictor, IFactory, IPoolOptionsParams } from '../../dist/index.js';
+    window.genericPool = {
+        createPool,
+        Pool,
+        Deque,
+        PriorityQueue,
+        DefaultEvictor
+        // Expose types if needed for advanced test scenarios, though typically not for runtime tests.
+        // IFactory,
+        // IPoolOptionsParams
+    };
+  </script>
+  <script src="tests.js"></script>
+  <script type="module">
+     // Ensure runTests is called after tests.js has loaded and defined tests
+     // and the library is available (from the script block above).
+     if (window.runTests) {
+        window.runTests();
+     } else {
+        console.error("runTests function not found. Ensure tests.js is loaded correctly.");
+     }
+  </script>
+</body>
+</html>

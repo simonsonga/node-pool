@@ -1,13 +1,13 @@
 "use strict";
 
-function noop() {}
+function noop(): void {}
 
 /**
  * Reflects a promise but does not expose any
  * underlying value or rejection from that promise.
- * @param  {Promise} promise [description]
- * @return {Promise}         [description]
+ * @param  {Promise<any>} promise
+ * @return {Promise<void>}
  */
-exports.reflector = function(promise) {
+export function reflector(promise: Promise<any>): Promise<void> {
   return promise.then(noop, noop);
-};
+}

@@ -1,9 +1,8 @@
 "use strict";
 
 class ExtendableError extends Error {
-  constructor(message) {
+  constructor(message: string) {
     super(message);
-    // @ts-ignore
     this.name = this.constructor.name;
     this.message = message;
     if (typeof Error.captureStackTrace === "function") {
@@ -15,13 +14,9 @@ class ExtendableError extends Error {
 }
 
 /* eslint-disable no-useless-constructor */
-class TimeoutError extends ExtendableError {
-  constructor(m) {
+export class TimeoutError extends ExtendableError {
+  constructor(m: string) {
     super(m);
   }
 }
 /* eslint-enable no-useless-constructor */
-
-module.exports = {
-  TimeoutError: TimeoutError
-};
