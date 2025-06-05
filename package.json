@@ -291,7 +291,8 @@
   "scripts": {
     "lint": "eslint lib test index.js .eslintrc.js",
     "lint-fix": "eslint --fix lib test index.js .eslintrc.js",
-    "test": "tap test/*-test.js "
+    "test": "tap test/*-test.js ",
+    "build": "tsc"
   },
   "license": "MIT"
 }
