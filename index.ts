@@ -15,17 +15,6 @@ import { IPoolOptionsParams } from "./lib/PoolOptions";
 // The imported DefaultEvictor, Deque, PriorityQueue are classes themselves,
 // so they are constructor functions.
 
-/**
- * Prioritizable interface placeholder for items that can be stored in PriorityQueue.
- * This should ideally be aligned with or imported from where PriorityQueue defines it,
- * or from a shared types file.
- * For the Pool's constructor, `ResourceRequest<T>` is used with `PriorityQueue`,
- * and `ResourceRequest<T>` has a `promise` property.
- */
-interface Prioritizable {
-  promise: Promise<any>;
-}
-
 
 /**
  * Creates a new generic resource pool.

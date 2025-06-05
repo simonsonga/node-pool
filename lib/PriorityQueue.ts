@@ -1,20 +1,21 @@
 "use strict";
 
 import { Queue } from "./Queue";
-import { ResourceRequest } from "./ResourceRequest"; // Assuming this will be typed
-
-// Assuming ResourceRequest is the type of item stored in the Queue.
-// If Queue can store various types, then T here should be generic.
-// For now, let's assume T is compatible with what Queue expects.
-// Based on Queue.ts, it expects items with a 'promise' property.
+// ResourceRequest is not directly used here, but Prioritizable often aligns with it.
+// import { ResourceRequest } from "./ResourceRequest";
 
 // If ResourceRequest is the concrete type, use it. Otherwise, define an interface.
-interface Prioritizable {
-  // Define properties of items that can be in PriorityQueue
-  // This should align with what `Queue<T>` expects if `T` is this type.
-  // For instance, if Queue<ResourceRequest> is used:
+// This interface defines the minimum requirement for items to be prioritizable in the queue,
+// particularly if the queue or its underlying structures (like Pool's use of ResourceRequest)
+// expect certain properties.
+export interface Prioritizable {
+  // The primary property ResourceRequest has that PriorityQueue relies on via Pool's usage
+  // is that it's a Deferred, which has a `promise` property.
   promise: Promise<any>;
-  // Add any other relevant properties from ResourceRequest
+  // Add any other properties if the PriorityQueue's logic itself depends on them,
+  // though typically it only cares about managing items of type T.
+  // The constraint `T extends Prioritizable` is more for the user of PriorityQueue (e.g., Pool)
+  // to ensure that items passed to it are compatible with its expected usage pattern.
 }
 
 export class PriorityQueue<T extends Prioritizable> {

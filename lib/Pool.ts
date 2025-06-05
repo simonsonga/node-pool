@@ -9,17 +9,11 @@ import { PooledResource } from "./PooledResource";
 import { DefaultEvictor, IEvictionConfig } from "./DefaultEvictor"; // Assuming IEvictionConfig is exported
 import { Deque } from "./Deque";
 import { Deferred, DeferredState } from "./Deferred"; // Assuming DeferredState is exported
-import { PriorityQueue } from "./PriorityQueue";
+import { PriorityQueue, Prioritizable } from "./PriorityQueue";
 import { reflector } from "./utils";
 // import { TimeoutError } from "./errors"; // Not directly used in Pool, but ResourceRequest uses it
 import { PooledResourceStateEnum } from "./PooledResourceStateEnum";
 import { DoublyLinkedListIterator } from "./DoublyLinkedListIterator"; // Deque's iterator might be this
-
-// Define Prioritizable if not already centrally defined and used by PriorityQueue
-// This is a placeholder; ideally, it's imported or defined in a shared types file.
-interface Prioritizable {
-  promise: Promise<any>;
-}
 
 
 const FACTORY_CREATE_ERROR = "factoryCreateError";
